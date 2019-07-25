@@ -1,0 +1,28 @@
+@tailwind base;
+
+h1 {
+  @apply text-2xl;
+}
+
+h2 {
+  @apply text-xl;
+}
+
+a {
+  @apply underline;
+}
+
+hr {
+  @apply border-t;
+}
+
+@tailwind components;
+@tailwind utilities;
+
+.transition {
+  transition: all 0.15s;
+}
+
+.multipane.layout-v .multipane-resizer {
+  height: auto;
+}

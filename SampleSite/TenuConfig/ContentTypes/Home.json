@@ -1,0 +1,15 @@
+{
+  "name": "Home page",
+  "properties": {
+    "title": {
+      "name": "Main title", 
+      "type": "text",
+      "required": true,
+      "hint": "The main heading"
+    },
+    "intro": {
+      "name": "Introduction", 
+      "type": "richtext"
+    }
+  }
+}
