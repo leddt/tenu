@@ -1,29 +1,29 @@
 <template>
   <li>
-    <div class="flex items-center">
-      <span class="flex flex-1">
-        <span class="w-4">
-          <button @click="toggleNode(node.id)" class="w-full">
-            <span v-if="!node.expanded">+</span>
-            <span v-if="node.expanded">-</span>
-          </button>
-        </span>
-        <router-link :to="{ name: 'content-edit', params: { id: node.id } }">
-          {{ node.name }}
-        </router-link>
-      </span>
-      <span>
+    <div class="flex items-center hover:bg-gray-100 rounded">
+      <tenu-button flat no-pad @click="toggleNode(node.id)" class="w-4">
+        <span v-if="!node.expanded">+</span>
+        <span v-if="node.expanded">-</span>
+      </tenu-button>
+      <router-link
+        :to="{ name: 'content-edit', params: { id: node.id } }"
+        class="truncate flex-1 mx-1"
+      >
+        {{ node.name }}
+      </router-link>
+      <div>
         <tenu-button
           flat
+          no-pad
           v-if="node.expanded"
           @click="refreshChildren(node.id)"
         >
           🔄
         </tenu-button>
-        <tenu-link-button flat :to="`/content/add?parent=${node.id}`">
+        <tenu-link-button flat no-pad :to="`/content/add?parent=${node.id}`">
           ➕
         </tenu-link-button>
-      </span>
+      </div>
     </div>
     <ul v-if="node.expanded" class="ml-4">
       <li v-if="!node.children"><em>loading...</em></li>

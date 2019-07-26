@@ -1,8 +1,9 @@
 <template>
   <router-link
     :to="to"
-    class="no-underline py-1 px-2 rounded active:shadow-outline focus:outline-none transition inline-block"
+    class="no-underline py-1 rounded active:shadow-outline focus:outline-none transition inline-block"
     :class="{
+      'px-2': !noPad,
       [`hover:bg-${baseColor}-400 active:bg-${baseColor}-500`]: true,
       [`bg-${baseColor}-200 border border-gray-600 hover:shadow`]: !flat
     }"
@@ -20,6 +21,9 @@ export default {
       type: Boolean
     },
     primary: {
+      type: Boolean
+    },
+    noPad: {
       type: Boolean
     }
   },
