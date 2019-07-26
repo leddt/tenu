@@ -3,7 +3,7 @@
     class="py-1 px-2 rounded active:shadow-outline focus:outline-none transition"
     :class="{
       [`hover:bg-${baseColor}-400 active:bg-${baseColor}-500`]: true,
-      [`bg-${baseColor}-200 border border-gray-600 hover:shadow`]: !flat
+      [`bg-${baseColor}-200 border border-${baseColor}-600 hover:shadow`]: !flat
     }"
     @click="$emit('click')"
   >
