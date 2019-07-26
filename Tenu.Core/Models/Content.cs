@@ -11,6 +11,7 @@ namespace Tenu.Core.Models
         public string Name { get; set; }
         public IDictionary<string, object> Metadata { get; set; } = new Dictionary<string, object>();
         public IDictionary<string, ContentProperty> Properties { get; set; } = new Dictionary<string,ContentProperty>();
+        public IList<string> Urls { get; set; } = new List<string>();
 
         public T GetMetadata<T>(string key)
         {
