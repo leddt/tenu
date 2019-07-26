@@ -3,76 +3,52 @@
     <div class="flex items-center">
       <span class="flex flex-1">
         <span class="w-4">
-          <button @click="toggle" class="w-full">
-            <span v-if="collapsed">+</span>
-            <span v-if="!collapsed">-</span>
+          <button @click="toggleNode(node.id)" class="w-full">
+            <span v-if="!node.expanded">+</span>
+            <span v-if="node.expanded">-</span>
           </button>
         </span>
-        <router-link
-          :to="{ name: 'content-edit', params: { id: this.content.id } }"
-        >
-          {{ this.content.name }}
+        <router-link :to="{ name: 'content-edit', params: { id: node.id } }">
+          {{ node.name }}
         </router-link>
       </span>
       <span>
-        <tenu-button flat v-if="!collapsed" @click="refresh">
+        <tenu-button
+          flat
+          v-if="node.expanded"
+          @click="refreshChildren(node.id)"
+        >
           🔄
         </tenu-button>
-        <tenu-link-button flat :to="`/content/add?parent=${this.content.id}`">
+        <tenu-link-button flat :to="`/content/add?parent=${node.id}`">
           ➕
         </tenu-link-button>
       </span>
     </div>
-    <ul v-if="!collapsed" class="ml-4">
-      <li v-if="!children"><em>loading...</em></li>
-      <li v-if="children && children.length === 0"><em>empty</em></li>
+    <ul v-if="node.expanded" class="ml-4">
+      <li v-if="!node.children"><em>loading...</em></li>
+      <li v-if="node.children && node.children.length === 0"><em>empty</em></li>
       <content-node
-        v-for="child in children || []"
+        v-for="child in node.children || []"
         :key="child.id"
-        :content="child"
+        :node="child"
       ></content-node>
     </ul>
   </li>
 </template>
 <script>
-import api from "@/services/api";
+import { mapActions } from "vuex";
 
 export default {
   name: "content-node",
   props: {
-    content: {
+    node: {
       type: Object,
       required: true
     }
   },
-  data() {
-    return {
-      collapsed: true,
-      children: null
-    };
-  },
   methods: {
-    addChild() {
-      let name = prompt("Node name");
-      if (!name) return;
-
-      return api
-        .post("content", { name, parentId: this.content.id })
-        .then(() => this.refresh());
-    },
-    refresh() {
-      this.children = null;
-      return api.get(`content/${this.content.id}/children`).then(children => {
-        this.children = children;
-        this.collapsed = false;
-      });
-    },
-    toggle() {
-      this.collapsed = !this.collapsed;
-      if (!this.collapsed && !this.children) {
-        return this.refresh();
-      }
-    }
+    ...mapActions("contentTree", ["toggleNode", "refreshChildren"])
   }
 };
 </script>
