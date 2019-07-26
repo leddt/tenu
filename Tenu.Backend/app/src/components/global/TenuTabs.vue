@@ -41,6 +41,12 @@ export default {
       if (this.tabs.length === 1) {
         this.select(tab);
       }
+    },
+    unregister(tab) {
+      this.tabs = this.tabs.filter(t => t !== tab);
+      if (this.current === tab) {
+        this.current = this.tabs[0];
+      }
     }
   }
 };

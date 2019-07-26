@@ -15,8 +15,10 @@ export default {
     }
   },
   created() {
-    console.log(this);
     this.$parent.register(this);
+  },
+  destroyed() {
+    this.$parent.unregister(this);
   }
 };
 </script>
