@@ -45,7 +45,11 @@
         </div>
 
         <div v-if="contentType">
-          <content-editor :contentType="contentType" :content="content" />
+          <content-editor
+            :contentType="contentType"
+            :content="content"
+            class="mt-4"
+          />
         </div>
       </div>
     </tenu-view>

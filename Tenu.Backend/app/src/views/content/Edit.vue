@@ -26,6 +26,7 @@
             v-if="contentType"
             :content="content"
             :contentType="contentType"
+            class="mt-4"
           />
         </div>
       </div>
