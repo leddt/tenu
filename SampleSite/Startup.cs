@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Tenu.Backend;
-using Tenu.ContentStorage.FileSystem;
+using Tenu.ContentStorage.LiteDB;
 using Tenu.Core;
 
 namespace SampleSite
@@ -14,7 +14,7 @@ namespace SampleSite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTenu()
-                .WithFileSystemContentStorage();
+                .WithLiteDbContentStorage();
 
             services.AddTenuBackend();
         }

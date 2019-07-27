@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tenu.Backend", "Tenu.Backen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tenu.Core", "Tenu.Core\Tenu.Core.csproj", "{B7B9101B-E981-4FAA-AA0A-E4CE8CEBF3B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tenu.ContentStorage.FileSystem", "Tenu.ContentStorage.FileSystem\Tenu.ContentStorage.FileSystem.csproj", "{CA89C18B-0DDE-412B-B627-18E01863E4E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tenu.ContentStorage.LiteDB", "Tenu.ContentStorage.LiteDB\Tenu.ContentStorage.LiteDB.csproj", "{B7C39FE6-76C2-4850-B3E8-7C38C385C390}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{B7B9101B-E981-4FAA-AA0A-E4CE8CEBF3B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7B9101B-E981-4FAA-AA0A-E4CE8CEBF3B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7B9101B-E981-4FAA-AA0A-E4CE8CEBF3B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA89C18B-0DDE-412B-B627-18E01863E4E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA89C18B-0DDE-412B-B627-18E01863E4E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA89C18B-0DDE-412B-B627-18E01863E4E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA89C18B-0DDE-412B-B627-18E01863E4E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7C39FE6-76C2-4850-B3E8-7C38C385C390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7C39FE6-76C2-4850-B3E8-7C38C385C390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7C39FE6-76C2-4850-B3E8-7C38C385C390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7C39FE6-76C2-4850-B3E8-7C38C385C390}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
