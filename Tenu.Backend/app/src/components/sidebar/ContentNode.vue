@@ -7,7 +7,8 @@
       </tenu-button>
       <router-link
         :to="{ name: 'content-edit', params: { id: node.id } }"
-        class="truncate flex-1 mx-1"
+        class="truncate flex-1 mx-1 no-underline"
+        active-class="font-bold"
       >
         {{ node.name }}
       </router-link>
