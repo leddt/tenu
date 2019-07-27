@@ -5,7 +5,7 @@
         <tenu-toolbar>
           <h1>Add content</h1>
           <div>
-            <tenu-button primary>Create</tenu-button>
+            <tenu-button primary submit>Create</tenu-button>
           </div>
         </tenu-toolbar>
       </template>

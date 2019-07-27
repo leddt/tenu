@@ -1,5 +1,6 @@
 <template>
   <button
+    :type="buttonType"
     class="py-1 rounded active:shadow-outline focus:outline-none transition"
     :class="{
       'px-2': !noPad,
@@ -22,9 +23,15 @@ export default {
     },
     noPad: {
       type: Boolean
+    },
+    submit: {
+      type: Boolean
     }
   },
   computed: {
+    buttonType() {
+      return this.submit ? "submit" : "button";
+    },
     baseColor() {
       return this.primary ? "green" : "gray";
     }

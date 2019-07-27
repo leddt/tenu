@@ -5,7 +5,7 @@
         <tenu-toolbar>
           <h1>Edit content</h1>
           <div>
-            <tenu-button primary>Update</tenu-button>
+            <tenu-button primary submit>Update</tenu-button>
           </div>
         </tenu-toolbar>
       </template>
