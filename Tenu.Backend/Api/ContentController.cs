@@ -36,9 +36,10 @@ namespace Tenu.Backend.Api
         }
 
         [HttpDelete("{id}")]
-        public async Task DeleteById(Guid id)
+        public async Task<IActionResult> DeleteById(Guid id)
         {
             await _contentRepository.Delete(id);
+            return NoContent();
         }
 
         [HttpPost]

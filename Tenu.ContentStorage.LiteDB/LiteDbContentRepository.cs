@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using LiteDB;
 using Microsoft.AspNetCore.Hosting;
@@ -48,10 +49,12 @@ namespace Tenu.ContentStorage.LiteDB
             return Task.CompletedTask;
         }
 
-        public Task Delete(Guid contentId)
+        public async Task Delete(Guid contentId)
         {
             _contentCollection.Delete(contentId);
-            return Task.CompletedTask;
+
+            var children = await GetChildren(contentId);
+            await Task.WhenAll(children.Select(c => Delete(c.Id)));
         }
 
         public void Dispose()

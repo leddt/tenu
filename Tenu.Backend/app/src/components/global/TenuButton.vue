@@ -21,6 +21,9 @@ export default {
     primary: {
       type: Boolean
     },
+    danger: {
+      type: Boolean
+    },
     noPad: {
       type: Boolean
     },
@@ -33,7 +36,7 @@ export default {
       return this.submit ? "submit" : "button";
     },
     baseColor() {
-      return this.primary ? "green" : "gray";
+      return this.danger ? "red" : this.primary ? "green" : "gray";
     }
   }
 };

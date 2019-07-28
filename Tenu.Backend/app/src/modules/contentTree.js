@@ -26,12 +26,12 @@ export default {
   },
 
   mutations: {
-    setRootNodes(state, rootNodes) {
+    rootNodesReceived(state, rootNodes) {
       state.rootNodes = rootNodes;
       registerNodes(state, rootNodes);
     },
 
-    setChildren(state, { parentId, children }) {
+    childrenReceived(state, { parentId, children }) {
       const parent = state.nodeById[parentId];
       if (parent) {
         parent.children = children;
@@ -40,13 +40,17 @@ export default {
       registerNodes(state, children);
     },
 
-    setNodeExpanded(state, { nodeId, expanded }) {
+    nodeExpandedChanged(state, { nodeId, expanded }) {
       state.nodeById[nodeId].expanded = expanded;
     },
 
-    setNodeName(state, { nodeId, name }) {
+    nodeNameChanged(state, { nodeId, name }) {
       if (!state.nodeById[nodeId]) return;
       state.nodeById[nodeId].name = name;
+    },
+
+    nodeRemoved(state, nodeId) {
+      Vue.set(state.nodeById, nodeId, undefined);
     }
   },
 
@@ -54,13 +58,13 @@ export default {
     async loadRootNodes({ commit }) {
       const results = await api.get("content");
 
-      commit("setRootNodes", results.map(contentToNode));
+      commit("rootNodesReceived", results.map(contentToNode));
     },
 
     async refreshChildren({ commit }, parentId) {
       const results = await api.get(`content/${parentId}/children`);
 
-      commit("setChildren", {
+      commit("childrenReceived", {
         parentId,
         children: results.map(contentToNode)
       });
@@ -71,7 +75,7 @@ export default {
       if (!node) return;
 
       const expanded = !node.expanded;
-      commit("setNodeExpanded", { nodeId, expanded });
+      commit("nodeExpandedChanged", { nodeId, expanded });
 
       if (expanded && node.children === null) {
         dispatch("refreshChildren", nodeId);
@@ -79,7 +83,7 @@ export default {
     },
 
     updateNode({ commit }, content) {
-      commit("setNodeName", { nodeId: content.id, name: content.name });
+      commit("nodeNameChanged", { nodeId: content.id, name: content.name });
     },
 
     refreshParent({ state, dispatch }, parentId) {
@@ -95,6 +99,14 @@ export default {
           }
         }
       }
+    },
+
+    removeNode({ state, commit, dispatch }, nodeId) {
+      const node = state.nodeById[nodeId];
+      if (!node) return;
+
+      commit("nodeRemoved", nodeId);
+      dispatch("refreshParent", node.parentId);
     }
   },
 
