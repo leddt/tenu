@@ -4,6 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageId>Tenu.ContentStorage.LiteDB</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>leddt</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Product>Tenu</Product>
+    <RepositoryUrl>https://github.com/leddt/tenu</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="LiteDB" Version="4.1.4" />
   </ItemGroup>
