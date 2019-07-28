@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Tenu.Backend;
+using Tenu.BackOffice;
 using Tenu.ContentStorage.LiteDB;
 using Tenu.Core;
 
@@ -16,7 +16,7 @@ namespace SampleSite
             services.AddTenu()
                 .WithLiteDbContentStorage();
 
-            services.AddTenuBackend();
+            services.AddTenuBackOffice();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -27,7 +27,7 @@ namespace SampleSite
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseTenuBackend();
+            app.UseTenuBackOffice();
         }
     }
 }

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Tenu.Backend</PackageId>
+    <PackageId>Tenu.BackOffice</PackageId>
     <Version>0.1.0</Version>
     <Authors>leddt</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

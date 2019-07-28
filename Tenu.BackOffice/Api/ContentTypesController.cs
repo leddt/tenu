@@ -2,7 +2,7 @@
 using Tenu.Core.Interfaces;
 using ContentType = Tenu.Core.Models.ContentType;
 
-namespace Tenu.Backend.Api
+namespace Tenu.BackOffice.Api
 {
     [Route("api/[controller]")]
     public class ContentTypesController : ControllerBase

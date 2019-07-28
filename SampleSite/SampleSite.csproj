@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tenu.Backend\Tenu.Backend.csproj" />
+    <ProjectReference Include="..\Tenu.BackOffice\Tenu.BackOffice.csproj" />
     <ProjectReference Include="..\Tenu.ContentStorage.LiteDB\Tenu.ContentStorage.LiteDB.csproj" />
   </ItemGroup>
 

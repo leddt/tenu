@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Tenu.Core.Interfaces;
 using Tenu.Core.Models;
 
-namespace Tenu.Backend.Api
+namespace Tenu.BackOffice.Api
 {
     [Route("api/[controller]")]
     public class ContentController : ControllerBase

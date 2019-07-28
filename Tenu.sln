@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleSite", "SampleSite\SampleSite.csproj", "{B8B73473-2393-41BC-96F4-5B999BCFBB7A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tenu.Backend", "Tenu.Backend\Tenu.Backend.csproj", "{4635CD42-91BC-4A23-8AA1-FEEB7957D2C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tenu.BackOffice", "Tenu.BackOffice\Tenu.BackOffice.csproj", "{4635CD42-91BC-4A23-8AA1-FEEB7957D2C4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tenu.Core", "Tenu.Core\Tenu.Core.csproj", "{B7B9101B-E981-4FAA-AA0A-E4CE8CEBF3B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tenu.ContentStorage.LiteDB", "Tenu.ContentStorage.LiteDB\Tenu.ContentStorage.LiteDB.csproj", "{B7C39FE6-76C2-4850-B3E8-7C38C385C390}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tenu.ContentStorage.LiteDB", "Tenu.ContentStorage.LiteDB\Tenu.ContentStorage.LiteDB.csproj", "{B7C39FE6-76C2-4850-B3E8-7C38C385C390}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

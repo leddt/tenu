@@ -3,36 +3,36 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.SpaServices.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Tenu.Backend.AspNetServices;
+using Tenu.BackOffice.AspNetServices;
 
-namespace Tenu.Backend
+namespace Tenu.BackOffice
 {
-    public class TenuBackendOptions
+    public class TenuBackOfficeOptions
     {
         // No setter for now as app bundle assumes /admin
-        public string BackendPath { get; } = "/admin";
+        public string BackOfficePath { get; } = "/admin";
     }
 
     public static class StartupExtensions
     {
-        public static void AddTenuBackend(this IServiceCollection services)
+        public static void AddTenuBackOffice(this IServiceCollection services)
         {
             services.AddMvcCore()
                 .AddJsonFormatters();
 
-            services.AddSingleton<ISpaStaticFileProvider, BackendSpaStaticFileProvider>();
+            services.AddSingleton<ISpaStaticFileProvider, BackOfficeSpaStaticFileProvider>();
         }
 
-        public static IApplicationBuilder UseTenuBackend(this IApplicationBuilder app, Action<TenuBackendOptions> configure = null)
+        public static IApplicationBuilder UseTenuBackOffice(this IApplicationBuilder app, Action<TenuBackOfficeOptions> configure = null)
         {
-            var options = app.ApplicationServices.GetService<IOptions<TenuBackendOptions>>().Value;
+            var options = app.ApplicationServices.GetService<IOptions<TenuBackOfficeOptions>>().Value;
             configure?.Invoke(options);
 
-            return app.Map(options.BackendPath, x =>
+            return app.Map(options.BackOfficePath, x =>
             {
                 x.UseStaticFiles(new StaticFileOptions
                 {
-                    FileProvider = new BackendFileProvider()
+                    FileProvider = new BackOfficeFileProvider()
                 });
                 x.UseSpaStaticFiles();
 
