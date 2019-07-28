@@ -56,6 +56,7 @@
   </form>
 </template>
 <script>
+import { mapActions } from "vuex";
 import api from "@/services/api";
 import ContentTypesService from "@/services/content-types-service";
 import ContentEditor from "@/components/content/ContentEditor";
@@ -89,6 +90,7 @@ export default {
     next();
   },
   methods: {
+    ...mapActions("contentTree", ["refreshParent"]),
     getNewContent(route) {
       return {
         parentId: route.query.parent,
@@ -110,6 +112,7 @@ export default {
     },
     async handleSubmit() {
       let newContent = await api.post("content", this.content);
+      this.refreshParent(newContent.parentId);
       this.$router.push(`/content/${newContent.id}`);
     }
   }

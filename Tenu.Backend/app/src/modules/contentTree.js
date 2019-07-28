@@ -1,8 +1,10 @@
+import Vue from "vue";
 import api from "@/services/api";
 
 function contentToNode(content) {
   return {
     id: content.id,
+    parentId: content.parentId,
     name: content.name,
     expanded: false,
     children: null
@@ -11,7 +13,7 @@ function contentToNode(content) {
 
 function registerNodes(state, nodes) {
   for (let node of nodes) {
-    state.nodeById[node.id] = node;
+    Vue.set(state.nodeById, node.id, node);
   }
 }
 
@@ -40,6 +42,11 @@ export default {
 
     setNodeExpanded(state, { nodeId, expanded }) {
       state.nodeById[nodeId].expanded = expanded;
+    },
+
+    setNodeName(state, { nodeId, name }) {
+      if (!state.nodeById[nodeId]) return;
+      state.nodeById[nodeId].name = name;
     }
   },
 
@@ -68,6 +75,25 @@ export default {
 
       if (expanded && node.children === null) {
         dispatch("refreshChildren", nodeId);
+      }
+    },
+
+    updateNode({ commit }, content) {
+      commit("setNodeName", { nodeId: content.id, name: content.name });
+    },
+
+    refreshParent({ state, dispatch }, parentId) {
+      if (parentId == null) {
+        dispatch("loadRootNodes");
+      } else {
+        const parentNode = state.nodeById[parentId];
+        if (parentNode) {
+          if (parentNode.expanded) {
+            dispatch("refreshChildren", parentId);
+          } else {
+            dispatch("toggleNode", parentId);
+          }
+        }
       }
     }
   },

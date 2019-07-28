@@ -34,6 +34,7 @@
   </form>
 </template>
 <script>
+import { mapActions } from "vuex";
 import api from "@/services/api";
 import ContentEditor from "@/components/content/ContentEditor";
 
@@ -53,6 +54,8 @@ export default {
     next();
   },
   methods: {
+    ...mapActions("contentTree", ["updateNode"]),
+
     async loadNode(id) {
       this.content = null;
       this.content = await api.get(`content/${id}`);
@@ -60,8 +63,9 @@ export default {
         `contentTypes/${this.content.contentTypeAlias}`
       );
     },
-    updateContent() {
-      api.put(`content/${this.content.id}`, this.content);
+    async updateContent() {
+      this.content = await api.put(`content/${this.content.id}`, this.content);
+      this.updateNode(this.content);
     }
   }
 };
