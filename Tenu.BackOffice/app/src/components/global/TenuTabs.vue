@@ -2,9 +2,9 @@
   <div>
     <ul class="flex flex-row">
       <template v-for="tab in tabs">
-        <li :key="tab.title" class="border-b border-gray-500 w-2"></li>
+        <li :key="`${tab.title}__spacer`" class="border-b border-gray-500 w-2"></li>
         <li
-          :key="`${tab.title}__spacer`"
+          :key="tab.title"
           class="border border-gray-500 rounded-t"
           :class="{ 'border-b-0': tab.active, 'bg-gray-400': !tab.active }"
         >
