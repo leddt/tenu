@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Tenu.BackOffice;
 using Tenu.ContentStorage.LiteDB;
 using Tenu.Core;
+using Tenu.FrontEnd;
 
 namespace SampleSite
 {
@@ -17,6 +18,7 @@ namespace SampleSite
                 .WithLiteDbContentStorage();
 
             services.AddTenuBackOffice();
+            services.AddTenuFrontEnd();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,6 +30,7 @@ namespace SampleSite
             }
 
             app.UseTenuBackOffice();
+            app.UseTenuFrontEnd();
         }
     }
 }

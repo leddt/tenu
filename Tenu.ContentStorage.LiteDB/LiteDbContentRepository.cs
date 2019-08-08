@@ -26,11 +26,29 @@ namespace Tenu.ContentStorage.LiteDB
             _db = new LiteDatabase(file);
             _contentCollection = _db.GetCollection<Content>();
             _contentCollection.EnsureIndex(x => x.ParentId);
+            _contentCollection.EnsureIndex(x => x.Urls);
         }
 
         public Task<Content> GetById(Guid contentId)
         {
             return Task.FromResult(_contentCollection.FindById(contentId));
+        }
+
+        public Task<Content> GetByUrl(string url)
+        {
+            return Task.FromResult(_contentCollection.Find(x => x.Urls.Contains(url)).FirstOrDefault());
+        }
+
+        public Task<Content> GetChildByUrl(Guid parentContentId, string urlSegment)
+        {
+            return Task.FromResult(
+                _contentCollection
+                    .Find(x =>
+                        x.ParentId == parentContentId &&
+                        x.Urls.Contains(urlSegment)
+                    )
+                    .FirstOrDefault()
+            );
         }
 
         public Task<IEnumerable<Content>> GetChildren(Guid parentContentId)
