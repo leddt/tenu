@@ -1,4 +1,6 @@
-﻿@model dynamic
+﻿@model Tenu.Core.Models.Content
+@{
+    Layout = "_Layout.cshtml";
+}
 
-<h1>@Model.title</h1>
-<div>@Model.intro</div>
+<h1>@Model.Properties["title"].RawValue</h1>

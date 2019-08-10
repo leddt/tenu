@@ -9,7 +9,12 @@ namespace Tenu.FrontEnd
     {
         public static void AddTenuFrontEnd(this IServiceCollection services)
         {
+            services.AddMvcCore()
+                .AddRazorViewEngine()
+                .AddCookieTempDataProvider();
+
             services.AddScoped<TenuRouter>();
+            services.AddScoped<TenuRenderer>();
         }
 
         public static void UseTenuFrontEnd(this IApplicationBuilder app)

@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
-using Newtonsoft.Json;
-using Tenu.Core.Models;
 
 namespace Tenu.FrontEnd
 {
@@ -16,7 +14,7 @@ namespace Tenu.FrontEnd
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context, TenuRouter router)
+        public async Task Invoke(HttpContext context, TenuRouter router, TenuRenderer renderer)
         {
             if (!context.Request.Method.Equals("GET", StringComparison.OrdinalIgnoreCase))
             {
@@ -31,13 +29,8 @@ namespace Tenu.FrontEnd
                 return;
             }
 
-            await RenderContent(context, content);
+            await renderer.Render(context.Response, content);
         }
 
-        private static Task RenderContent(HttpContext context, Content content)
-        {
-            context.Response.ContentType = "application/json";
-            return context.Response.WriteAsync(JsonConvert.SerializeObject(content));
-        }
     }
 }

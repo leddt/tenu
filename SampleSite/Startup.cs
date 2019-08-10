@@ -29,6 +29,7 @@ namespace SampleSite
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
             app.UseTenuBackOffice();
             app.UseTenuFrontEnd();
         }
