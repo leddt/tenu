@@ -1,4 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,12 +24,14 @@ namespace Tenu.FrontEnd
         private readonly IContentTypeRepository _contentTypeRepository;
         private readonly IRazorViewEngine _viewEngine;
         private readonly ITempDataProvider _tempDataProvider;
+        private readonly PropertyConverterService _converterService;
 
-        public TenuRenderer(IContentTypeRepository contentTypeRepository, IRazorViewEngine viewEngine, ITempDataProvider tempDataProvider)
+        public TenuRenderer(IContentTypeRepository contentTypeRepository, IRazorViewEngine viewEngine, ITempDataProvider tempDataProvider, PropertyConverterService converterService)
         {
             _contentTypeRepository = contentTypeRepository;
             _viewEngine = viewEngine;
             _tempDataProvider = tempDataProvider;
+            _converterService = converterService;
         }
 
         public async Task Render(HttpResponse response, Content content)
@@ -65,8 +71,10 @@ namespace Tenu.FrontEnd
 
             if (modelType == typeof(Content))
                 return content;
-            else
-                return null;
+            if (modelType == typeof(object))
+                return new DynamicContentModel(content, _converterService);
+
+            return null;
         }
 
         private async Task RenderView(HttpResponse response, IView view, object model)
@@ -94,8 +102,15 @@ namespace Tenu.FrontEnd
                     writer,
                     new HtmlHelperOptions());
 
-                await view.RenderAsync(viewContext);
-                response.ContentType = "text/html";
+                try
+                {
+                    await view.RenderAsync(viewContext);
+                    response.ContentType = "text/html";
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
             }
         }
     }

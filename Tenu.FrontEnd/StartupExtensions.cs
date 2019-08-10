@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.DependencyInjection;
+using Tenu.FrontEnd.PropertyConverters;
 
 namespace Tenu.FrontEnd
 {
@@ -15,6 +16,10 @@ namespace Tenu.FrontEnd
 
             services.AddScoped<TenuRouter>();
             services.AddScoped<TenuRenderer>();
+            services.AddSingleton<PropertyConverterService>();
+
+            TextPropertyConverter.Register(services);
+            RichTextPropertyConverter.Register(services);
         }
 
         public static void UseTenuFrontEnd(this IApplicationBuilder app)
