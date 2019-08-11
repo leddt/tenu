@@ -16,6 +16,7 @@ namespace Tenu.FrontEnd
 
             services.AddScoped<TenuRouter>();
             services.AddScoped<TenuRenderer>();
+            services.AddScoped<ModelFactory>();
             services.AddSingleton<PropertyConverterService>();
 
             TextPropertyConverter.Register(services);
