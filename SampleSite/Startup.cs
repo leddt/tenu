@@ -19,6 +19,8 @@ namespace SampleSite
 
             services.AddTenuBackOffice();
             services.AddTenuFrontEnd();
+
+            services.AddSingleton<MyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
